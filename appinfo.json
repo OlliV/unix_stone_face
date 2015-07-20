@@ -3,7 +3,7 @@
     "capabilities": [
         ""
     ],
-    "companyName": "josh_batch@live.com.au",
+    "companyName": "OlliV",
     "longName": "Unix_Time",
     "projectType": "native",
     "resources": {
@@ -15,10 +15,11 @@
             }
         ]
     },
+    "sdkVersion": "2",
     "shortName": "Unix_Time",
-    "uuid": "5e034d8f-fc3a-46a2-bf62-531d00f08fd5",
+    "uuid": "571ab704-1c11-40a5-911e-03d84cfbcafc",
     "versionCode": 1,
-    "versionLabel": "1.0",
+    "versionLabel": "0.1",
     "watchapp": {
         "watchface": true
     }

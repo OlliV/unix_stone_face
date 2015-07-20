@@ -8,8 +8,8 @@ static GFont time_font;
 static void update_time(){
   static char buffer[11];
   
-  snprintf(buffer, 11, "%d", (int)time(NULL));
-  
+  snprintf(buffer, sizeof(buffer), "%x", (int)time(NULL));
+    
   text_layer_set_text(time_layer, buffer);
 }
 

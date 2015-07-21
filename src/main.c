@@ -11,30 +11,32 @@ static GFont time_font;
 static char *bt_status = "Unk";
 static char batt_status[] = "+100%";
 
-#define TIMEVLEN    20
+#define TIMEVLEN    9
 #define TIMEFMT_12H "%I:%M %p"
 #define TIMEFMT_24H "%H:%M"
+#define DATEVLEN    11
+#define DATEFMT     "%a %b %e"
 
 static void update_time(void)
 {
     static char utime_buffer[TIMEVLEN];
     static char time_buffer[TIMEVLEN];
-    static char date_buffer[TIMEVLEN];
+    static char date_buffer[DATEVLEN];
     time_t utime;
     struct tm *tm;
 
     utime = time(NULL);
     tm = localtime(&utime);
 
-    snprintf(utime_buffer, TIMEVLEN, "%x", (int)utime);
+    snprintf(utime_buffer, sizeof(utime_buffer), "%x", (unsigned)utime);
 
     if(clock_is_24h_style() == true) {
-        strftime(time_buffer, TIMEVLEN, TIMEFMT_24H, tm);
+        strftime(time_buffer, sizeof(time_buffer), TIMEFMT_24H, tm);
     } else {
-        strftime(time_buffer, TIMEVLEN, TIMEFMT_12H, tm);
+        strftime(time_buffer, sizeof(time_buffer), TIMEFMT_12H, tm);
     }
 
-    strftime(date_buffer, TIMEVLEN, "%a %b %e", tm);
+    strftime(date_buffer, sizeof(date_buffer), DATEFMT, tm);
 
     text_layer_set_text(utime_layer, utime_buffer);
     text_layer_set_text(time_layer, time_buffer);
@@ -89,7 +91,7 @@ static void main_window_load(Window *window)
     /*
      * Unix timestamp.
      */
-    utime_layer = text_layer_create(GRect(0, 5, bounds.size.w, 30));
+    utime_layer = text_layer_create(GRect(0, 2, bounds.size.w, 24));
     text_layer_set_background_color(utime_layer, GColorClear);
     text_layer_set_text_color(utime_layer, GColorBlack);
     text_layer_set_text(utime_layer, "");
@@ -100,7 +102,7 @@ static void main_window_load(Window *window)
     /*
      * Time.
      */
-    time_layer = text_layer_create(GRect(0, 35, bounds.size.w, 30));
+    time_layer = text_layer_create(GRect(0, 30, bounds.size.w, 24));
     text_layer_set_background_color(time_layer, GColorClear);
     text_layer_set_text_color(time_layer, GColorBlack);
     text_layer_set_text(time_layer, "00:00");
@@ -111,7 +113,7 @@ static void main_window_load(Window *window)
     /*
      * Date.
      */
-    date_layer = text_layer_create(GRect(0, 100, bounds.size.w, 30));
+    date_layer = text_layer_create(GRect(0, bounds.size.h - 50, bounds.size.w, 24));
     text_layer_set_background_color(date_layer, GColorClear);
     text_layer_set_text_color(date_layer, GColorBlack);
     text_layer_set_text(date_layer, "");
@@ -122,7 +124,7 @@ static void main_window_load(Window *window)
     /*
      * Status.
      */
-    status_layer = text_layer_create(GRect(0, bounds.size.h - 34, bounds.size.w, 34));
+    status_layer = text_layer_create(GRect(0, bounds.size.h - 24, bounds.size.w, 24));
     text_layer_set_background_color(status_layer, GColorBlack);
     text_layer_set_text_color(status_layer, GColorClear);
     text_layer_set_font(status_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18));

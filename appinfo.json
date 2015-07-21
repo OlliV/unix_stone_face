@@ -1,13 +1,37 @@
 {
-    "appKeys": {},
+    "appKeys": {
+        "KEY_CONDITIONS": 1,
+        "KEY_TEMPERATURE": 0,
+        "WEATHER_ICON_KEY": 2
+    },
     "capabilities": [
-        ""
+        "location"
     ],
     "companyName": "OlliV",
     "longName": "Unix_Time",
     "projectType": "native",
     "resources": {
         "media": [
+            {
+                "file": "images/sun.png",
+                "name": "IMAGE_SUN",
+                "type": "png"
+            },
+            {
+                "file": "images/rain.png",
+                "name": "IMAGE_RAIN",
+                "type": "png"
+            },
+            {
+                "file": "images/snow.png",
+                "name": "IMAGE_SNOW",
+                "type": "png"
+            },
+            {
+                "file": "images/cloud.png",
+                "name": "IMAGE_CLOUD",
+                "type": "png"
+            },
             {
                 "file": "fonts/perfect-dos-vga.ttf",
                 "name": "FONT_PERFECT_DOS_23",

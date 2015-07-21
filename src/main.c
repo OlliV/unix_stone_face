@@ -204,7 +204,7 @@ static void main_window_load(Window *window)
     text_layer_set_text(weather_layer, "?");
     layer_add_child(window_get_root_layer(window), text_layer_get_layer(weather_layer));
     
-    icon_layer = bitmap_layer_create(GRect(32, 45, 64, 64));
+    icon_layer = bitmap_layer_create(GRect(57, 60, 30, 30));
     layer_add_child(window_layer, bitmap_layer_get_layer(icon_layer));
 
     /*
